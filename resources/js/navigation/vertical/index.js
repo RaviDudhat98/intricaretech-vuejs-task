@@ -9,4 +9,9 @@ export default [
     to: { name: 'second-page' },
     icon: { icon: 'tabler-file' },
   },
+  {
+    title: 'Campaign',
+    to: { name: 'campaign' },
+    icon: { icon: 'tabler-speakerphone' },
+  },
 ]
