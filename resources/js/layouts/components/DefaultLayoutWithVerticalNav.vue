@@ -13,15 +13,7 @@ import { VerticalNavLayout } from '@layouts'
 
 const configStore = useConfigStore()
 const selectedItem = ref([configStore.theme])
-const themes = [
-  {
-    name: 'light',
-    icon: 'tabler-sun-high',
-  },
-  {
-    name: 'dark',
-    icon: 'tabler-moon-stars',
-  },]
+
 // Update icon if theme is changed from other sources
 watch(() => configStore.theme, () => {
   selectedItem.value = [configStore.theme]

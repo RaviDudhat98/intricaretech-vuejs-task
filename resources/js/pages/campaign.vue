@@ -1,11 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // Import split components
-import EmptyStateView from '../views/campaign/EmptyStateView.vue'
-import WorkflowModeModal from '../views/campaign/WorkflowModeModal.vue'
 import AdvanceCampaignSetup from '../views/campaign/AdvanceCampaignSetup.vue'
+import EmptyStateView from '../views/campaign/EmptyStateView.vue'
 import StandardCampaignSetup from '../views/campaign/StandardCampaignSetup.vue'
+import WorkflowModeModal from '../views/campaign/WorkflowModeModal.vue'
 
 const currentView = ref('empty')
 const isMounted = ref(false)
@@ -41,12 +41,14 @@ const handleLaunch = () => {
         <span class="text-body-2 text-medium-emphasis font-weight-medium">Campaign</span>
       </div>
       <div v-if="currentView === 'advance'" class="d-flex align-center">
-        <span class="text-body-2 text-primary cursor-pointer font-weight-medium" @click="currentView = 'empty'">Campaign</span>
+        <span class="text-body-2 text-primary cursor-pointer font-weight-medium"
+          @click="currentView = 'empty'">Campaign</span>
         <VIcon size="16" class="mx-2 text-medium-emphasis">tabler-chevron-right</VIcon>
         <span class="text-body-2 text-high-emphasis font-weight-medium">Advance Campaign</span>
       </div>
       <div v-if="currentView === 'standard'" class="d-flex align-center">
-        <span class="text-body-2 text-primary cursor-pointer font-weight-medium" @click="currentView = 'empty'">Campaign</span>
+        <span class="text-body-2 text-primary cursor-pointer font-weight-medium"
+          @click="currentView = 'empty'">Campaign</span>
         <VIcon size="16" class="mx-2 text-medium-emphasis">tabler-chevron-right</VIcon>
         <span class="text-body-2 text-high-emphasis font-weight-medium">Standard Campaign</span>
       </div>
@@ -55,9 +57,11 @@ const handleLaunch = () => {
     <!-- Sub-components rendered based on view state -->
     <EmptyStateView v-if="currentView === 'empty'" @openWorkflowModal="isWorkflowModalOpen = true" />
 
-    <AdvanceCampaignSetup v-else-if="currentView === 'advance'" @goBack="currentView = 'empty'" @submit="handleLaunch" />
+    <AdvanceCampaignSetup v-else-if="currentView === 'advance'" @goBack="currentView = 'empty'"
+      @submit="handleLaunch" />
 
-    <StandardCampaignSetup v-else-if="currentView === 'standard'" @goBack="currentView = 'empty'" @submit="handleLaunch" />
+    <StandardCampaignSetup v-else-if="currentView === 'standard'" @goBack="currentView = 'empty'"
+      @submit="handleLaunch" />
 
     <!-- Modals -->
     <WorkflowModeModal v-model:isDialogOpen="isWorkflowModalOpen" @startWorkflow="startWorkflow" />
