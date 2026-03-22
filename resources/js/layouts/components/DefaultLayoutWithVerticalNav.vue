@@ -29,7 +29,7 @@ watch(() => configStore.theme, () => {
           <VIcon size="26" icon="tabler-menu-2" />
         </IconBtn>
 
-        <div id="navbar-breadcrumbs" class="d-flex align-center ml-2"></div>
+        <div id="navbar-breadcrumbs" class="d-none d-md-flex align-center ml-2"></div>
 
         <!-- <NavbarThemeSwitcher /> -->
 

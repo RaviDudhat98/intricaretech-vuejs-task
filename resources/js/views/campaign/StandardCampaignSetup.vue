@@ -27,9 +27,10 @@ const useWebhook = ref(false)
               :variant="currentStandardStep === 1 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
               <VIcon size="22" :color="currentStandardStep === 1 ? 'white' : 'newPrimary'">tabler-list-details</VIcon>
             </VAvatar>
-            <span class="text-subtitle-1">Leads List</span>
+            <span :class="`text-subtitle-1 ${currentStandardStep === 1 ? 'text-textPrimary' : 'text-bodyText'}`">Leads
+              List</span>
           </div>
-          <VIcon size="20" class="text-disabled">tabler-chevron-right</VIcon>
+          <VIcon size="20" class="text-bodyText">tabler-chevron-right</VIcon>
 
           <!-- Step 2 -->
           <div
@@ -39,9 +40,10 @@ const useWebhook = ref(false)
               :variant="currentStandardStep === 2 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
               <VIcon size="22" :color="currentStandardStep === 2 ? 'white' : 'newPrimary'">tabler-send</VIcon>
             </VAvatar>
-            <span class="text-subtitle-1">Target Audience</span>
+            <span :class="`text-subtitle-1 ${currentStandardStep === 2 ? 'text-textPrimary' : 'text-bodyText'}`">Target
+              Audience</span>
           </div>
-          <VIcon size="20" class="text-disabled">tabler-chevron-right</VIcon>
+          <VIcon size="20" class="text-bodyText">tabler-chevron-right</VIcon>
 
           <!-- Step 3 -->
           <div
@@ -51,7 +53,8 @@ const useWebhook = ref(false)
               :variant="currentStandardStep === 3 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
               <VIcon size="22" :color="currentStandardStep === 3 ? 'white' : 'newPrimary'">tabler-speakerphone</VIcon>
             </VAvatar>
-            <span class="text-subtitle-1">Campaign</span>
+            <span
+              :class="`text-subtitle-1 ${currentStandardStep === 3 ? 'text-textPrimary' : 'text-bodyText'}`">Campaign</span>
           </div>
         </div>
 
@@ -149,12 +152,13 @@ const useWebhook = ref(false)
         </div>
 
         <!-- Standard Step 3: Sequence -->
-        <div v-if="currentStandardStep === 3" class="sequence-timeline px-4">
+        <div v-if="currentStandardStep === 3" class="sequence-timeline pl-4">
           <div class="timeline-container py-2 border-s-2 border-newPrimary ml-2 mb-4 position-relative">
 
             <!-- Stop 1: Campaign Start -->
             <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
               style="left: -9px; top: 0; width: 16px; height: 16px;"></div>
+            <div class="timeline-line"></div>
             <VCard variant="outlined" class="my-6 ml-6 border" elevation="0">
               <div class="d-flex align-center mx-4 my-3">
                 <VIcon color="newPrimary" size="24" class="mr-3">tabler-rocket</VIcon>
@@ -275,6 +279,29 @@ const useWebhook = ref(false)
 </template>
 
 <style scoped>
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #3666EE;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.timeline-line {
+  left: -3px;
+  position: absolute;
+  top: 30px;
+  bottom: -14px;
+  width: 3px;
+  background-color: #EAEFFF;
+  z-index: 1;
+}
+
 .bg-bgGradient {
   background: linear-gradient(239.27deg, #8BA6FF -27.06%, #3762EE 83.4%) !important;
 }
