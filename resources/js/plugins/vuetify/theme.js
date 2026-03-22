@@ -3,7 +3,17 @@ export const staticPrimaryDarkenColor = '#675DD8'
 export const themes = {
   light: {
     dark: false,
-    colors: {
+    colors: {      
+      'tableHeadBg': "#F3F2F7",
+      "activebg": "#CFDAFE",
+      'newSecodary': "#F1F5F9",
+      'bodyText': '#6E6B7B',
+      'bgPrimary': '#2689F26B',
+      'bgLight': '#F8FAFF',
+      'textPrimary': '#444050',
+      'textSecondary': '#5E5873',
+      'newPrimary': '#3666EE',
+      'navbarText': '#334155',
       'primary': staticPrimaryColor,
       'on-primary': '#fff',
       'primary-darken-1': '#675DD8',
