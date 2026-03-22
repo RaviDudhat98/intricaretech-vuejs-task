@@ -36,21 +36,24 @@ const handleLaunch = () => {
   <div class="campaign-page">
     <Teleport to="#navbar-breadcrumbs" v-if="isMounted">
       <div v-if="currentView === 'empty'" class="d-flex align-center">
-        <VIcon size="18" color="primary" class="cursor-pointer">tabler-home</VIcon>
+        <VIcon size="18" color="#3666EE" class="cursor-pointer">tabler-home</VIcon>
         <VIcon size="16" class="mx-2 text-medium-emphasis">tabler-chevron-right</VIcon>
-        <span class="text-body-2 text-medium-emphasis font-weight-medium">Campaign</span>
+        <span class="text-body-2 text-medium-emphasis text-newPrimary"
+          :style="{ fontSize: '20px !important' }">Campaign</span>
       </div>
       <div v-if="currentView === 'advance'" class="d-flex align-center">
-        <span class="text-body-2 text-primary cursor-pointer font-weight-medium"
+        <span class="text-body-2 text-primary cursor-pointer text-newPrimary" :style="{ fontSize: '20px !important' }"
           @click="currentView = 'empty'">Campaign</span>
         <VIcon size="16" class="mx-2 text-medium-emphasis">tabler-chevron-right</VIcon>
-        <span class="text-body-2 text-high-emphasis font-weight-medium">Advance Campaign</span>
+        <span class="text-body-2 text-high-emphasis text-navbarText" :style="{ fontSize: '20px !important' }">Advance
+          Campaign</span>
       </div>
       <div v-if="currentView === 'standard'" class="d-flex align-center">
-        <span class="text-body-2 text-primary cursor-pointer font-weight-medium"
+        <span class="text-body-2 text-primary cursor-pointer text-newPrimary" :style="{ fontSize: '20px !important' }"
           @click="currentView = 'empty'">Campaign</span>
         <VIcon size="16" class="mx-2 text-medium-emphasis">tabler-chevron-right</VIcon>
-        <span class="text-body-2 text-high-emphasis font-weight-medium">Standard Campaign</span>
+        <span class="text-body-2 text-high-emphasis text-navbarText" :style="{ fontSize: '20px !important' }">Standard
+          Campaign</span>
       </div>
     </Teleport>
 
