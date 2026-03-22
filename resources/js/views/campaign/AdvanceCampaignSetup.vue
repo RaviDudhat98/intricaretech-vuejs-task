@@ -50,64 +50,69 @@ const handleListSelected = (listName) => {
 <template>
   <div class="advance-setup-view">
     <!-- Horizontal Stepper area -->
-    <VCard class="mb-8 stepper-header-card border-none" elevation="0">
-      <VCardText class="d-flex flex-column   pa-4">
-        <div class="d-flex align-center px-6 py-3 border rounded">
+    <VCard class="mb-6 mb-md-8 stepper-header-card border-none" elevation="0">
+      <VCardText class="d-flex flex-column pa-2 pa-sm-4">
+        <div class="d-flex align-center px-3 px-sm-6 py-2 py-sm-3 border rounded overflow-x-auto">
           <div
-            :class="['d-flex align-center  font-weight-medium cursor-pointer', currentStep >= 1 ? 'text-newPrimary' : 'text-disabled']"
+            :class="['d-flex align-center font-weight-medium cursor-pointer flex-shrink-0', currentStep >= 1 ? 'text-newPrimary' : 'text-disabled']"
             @click="currentStep = 1">
             <VAvatar :color="currentStep >= 1 ? 'newPrimary' : 'secondary'"
-              :variant="currentStep >= 1 ? 'elevated' : 'tonal'" rounded size="38" class="mr-3">
-              <VIcon size="22" v-if="currentStep > 1">tabler-check</VIcon>
-              <VIcon size="22" v-else>tabler-list-details</VIcon>
+              :variant="currentStep >= 1 ? 'elevated' : 'tonal'" rounded :size="$vuetify.display.xs ? 32 : 38"
+              class="mr-2 mr-sm-3">
+              <VIcon :size="$vuetify.display.xs ? 18 : 22" v-if="currentStep > 1">tabler-check</VIcon>
+              <VIcon :size="$vuetify.display.xs ? 18 : 22" v-else>tabler-list-details</VIcon>
             </VAvatar>
-            <span class="text-subtitle-1 text-textPrimary font-weight-medium">Define Target Audience</span>
+            <span class="text-body-2 text-sm-subtitle-1 text-textPrimary font-weight-medium whitespace-nowrap">Target
+              Audience</span>
           </div>
 
-          <VIcon size="20" class="mx-6 text-disabled text-textPrimary font-weight-medium">tabler-chevron-right</VIcon>
+          <VIcon :size="18" class="mx-2 mx-sm-6 text-disabled flex-shrink-0">tabler-chevron-right</VIcon>
 
           <div
-            :class="['d-flex align-center font-weight-medium', currentStep === 2 ? 'text-newPrimary' : 'text-disabled']">
+            :class="['d-flex align-center font-weight-medium flex-shrink-0', currentStep === 2 ? 'text-newPrimary' : 'text-disabled']">
             <VAvatar :color="currentStep === 2 ? 'newPrimary' : '#F1F5F9'"
-              :variant="currentStep === 2 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
-              <VIcon size="22" :color="currentStep === 2 ? 'white' : 'disabled'">tabler-user</VIcon>
+              :variant="currentStep === 2 ? 'elevated' : 'flat'" rounded :size="$vuetify.display.xs ? 32 : 38"
+              class="mr-2 mr-sm-3">
+              <VIcon :size="$vuetify.display.xs ? 18 : 22" :color="currentStep === 2 ? 'white' : 'disabled'">tabler-user
+              </VIcon>
             </VAvatar>
-            <span class="text-subtitle-1">Sender Profiles</span>
+            <span class="text-body-2 text-sm-subtitle-1 whitespace-nowrap">Sender Profiles</span>
           </div>
         </div>
         <!-- </VCardText> -->
         <!-- </VCard> -->
 
         <!-- Step 1 Content: Vertical Stepper -->
-        <div v-if="currentStep === 1" class="vertical-stepper-container my-5">
+        <div v-if="currentStep === 1" class="vertical-stepper-container my-4 my-sm-5">
           <!-- Sub-step 1: Choose Import Method -->
           <div class="stepper-item">
             <div class="stepper-indicator">
               <div class="stepper-dot" :class="{ 'completed': selectedImportMethod }">
-                <VIcon v-if="selectedImportMethod" size="14" color="white">tabler-check</VIcon>
+                <VIcon v-if="selectedImportMethod" size="12" color="white">tabler-check</VIcon>
               </div>
               <div class="stepper-line"></div>
             </div>
 
             <div class="stepper-content">
               <!-- <VCard elevation="0" class="mb-6 border"> -->
-              <VCardItem class="px-6 py-3 border rounded">
+              <VCardItem class="px-4 px-sm-6 py-3 border rounded">
                 <template #append>
                   <VIcon icon="tabler-chevron-up" size="20" class="text-textPrimary" />
                 </template>
-                <VCardTitle class="text-h6 text-textPrimary font-weight-medium">Choose Import Method
-                  <span
-                    class="mx-2 bg-newSecodary py-1 px-3 rounded text-bodyText font-weight-bold text-body-small">Step
-                    1
-                    of
-                    2</span>
+                <VCardTitle
+                  class="text-subtitle-1 text-sm-h6 text-textPrimary font-weight-medium d-flex flex-wrap align-center">
+                  <span>Choose Import Method</span>
+                  <VChip size="x-small" label
+                    class="ml-sm-2 mt-1 mt-sm-0 bg-newSecodary text-bodyText font-weight-bold">
+                    Step 1 of 2
+                  </VChip>
                 </VCardTitle>
               </VCardItem>
 
-              <VCardText class="pa-6">
+              <VCardText class="pa-4 pa-sm-6">
                 <VRow>
                   <!-- LinkedIn Search -->
-                  <VCol cols="12" md="3">
+                  <VCol cols="12" sm="6" md="3">
                     <VCard variant="outlined" class="cursor-pointer h-100 import-card"
                       :class="{ 'selected': selectedImportMethod === 'linkedin' }"
                       @click="selectImportMethod('linkedin')">
@@ -126,7 +131,7 @@ const handleListSelected = (listName) => {
                   </VCol>
 
                   <!-- Upload CSV -->
-                  <VCol cols="12" md="3">
+                  <VCol cols="12" sm="6" md="3">
                     <VCard variant="outlined" class="cursor-pointer h-100 import-card"
                       :class="{ 'selected': selectedImportMethod === 'csv' }" @click="selectImportMethod('csv')">
                       <div class="pa-4">
@@ -218,15 +223,15 @@ const handleListSelected = (listName) => {
                     </div>
                     <VSpacer />
                     <a href="#"
-                      class="text-newPrimary text-decoration-underline d-flex align-center text-caption font-weight-medium">
+                      class="text-newPrimary text-decoration-underline d-md-flex d-none align-center text-caption font-weight-medium">
                       <VIcon size="16" class="mr-1">tabler-help-circle</VIcon> Search Guide
                     </a>
                   </div>
 
-                  <div class="d-flex align-center">
+                  <div class="d-flex align-center flex-column flex-md-row ga-2">
                     <VTextField placeholder="https://www.linkedin.com/search/results/people/?keywords="
-                      variant="outlined" density="comfortable" hide-details class="mr-4 h-38" bg-color="white" />
-                    <VBtn color="bgPrimary" elevation="0">Validate</VBtn>
+                      variant="outlined" density="comfortable" hide-details class="h-38 w-100" bg-color="white" />
+                    <VBtn color="bgPrimary" elevation="0" class="w-100 w-md-auto">Validate</VBtn>
                   </div>
                   <p class="text-caption text-medium-emphasis mt-3 mb-0 d-flex align-center">
                     <VIcon size="8" color="newPrimary" class="mr-2">tabler-circle-filled</VIcon>
@@ -271,98 +276,90 @@ const handleListSelected = (listName) => {
                 <!-- CSV Mapping view -->
                 <div v-else>
                   <VCard class="mb-4 border" elevation="0">
-                    <VCardText class="d-flex align-center justify-space-between py-3">
-                      <div class="d-flex align-center text-body-1">
-                        <VIcon color="success" size="20" class="mr-2">tabler-circle-check-filled</VIcon>
-                        <span class="font-weight-medium mr-4">Upload CSV file Selected</span>
-                        <VChip size="small" variant="tonal" color="default">Step 1 of 2</VChip>
-                      </div>
-                      <VIcon size="20" class="text-medium-emphasis">tabler-chevron-down</VIcon>
-                    </VCardText>
-                  </VCard>
-                  <VCard class="mb-4 border" elevation="0">
-                    <VCardText class="d-flex align-center justify-space-between py-3">
-                      <div class="d-flex align-center text-body-1">
-                        <VIcon color="success" size="20" class="mr-2">tabler-circle-check-filled</VIcon>
-                        <span class="font-weight-medium mr-4">Upload CSV File</span>
-                        <VChip size="small" variant="tonal" color="default">Step 1 of 2</VChip>
+                    <VCardText class="d-flex align-center justify-space-between py-2 py-sm-3 px-4 px-sm-6">
+                      <div class="d-flex align-center text-body-2 text-sm-body-1">
+                        <VIcon color="success" :size="20" class="mr-2">tabler-circle-check-filled</VIcon>
+                        <span class="font-weight-medium mr-2 mr-sm-4">Upload CSV file Selected</span>
+                        <VChip size="x-small" variant="tonal" color="default">Step 1 of 2</VChip>
                       </div>
                       <VIcon size="20" class="text-medium-emphasis">tabler-chevron-down</VIcon>
                     </VCardText>
                   </VCard>
 
                   <VCard class="mb-6 border" elevation="0">
-                    <VCardItem class="pb-2 pt-5">
+                    <VCardItem class="pb-2 pt-4 pa-4 pa-sm-6">
                       <div class="d-flex justify-space-between align-start">
                         <div>
-                          <VCardTitle class="text-h5 text-textSecondary mb-1">Map Properties</VCardTitle>
-                          <div class="d-flex align-center text-body-2 text-textSecondary">
-                            <VIcon size="16" class="mr-1">tabler-check</VIcon> Make sure file includes contact name and
+                          <VCardTitle class="text-subtitle-1 text-sm-h5 text-textSecondary mb-1">Map Properties
+                          </VCardTitle>
+                          <div class="d-flex align-center text-caption text-sm-body-2 text-textSecondary">
+                            <VIcon size="14" class="mr-1">tabler-check</VIcon> Make sure file includes contact name and
                             phone
                             number
                           </div>
                         </div>
-                        <VBtn icon="tabler-trash" variant="text" color="error" />
+                        <VBtn icon="tabler-trash" variant="text" color="error" density="compact" />
                       </div>
                     </VCardItem>
-
-                    <VCardText class="pa-6">
+                    <VDivider />
+                    <VCardText class="pa-4 pa-sm-6">
                       <VRow>
-                        <VCol cols="12" md="8">
-                          <VCard variant="outlined" class="h-100 bg-grey-lighten-5 border">
-                            <VCardItem class="pb-2 pt-4">
-                              <div class="d-flex align-center px-4">
-                                <div style="flex: 1" class="text-textPrimary font-weight-semibold">Contact Field</div>
-                                <div style="flex: 1" class="ml-4 text-textPrimary font-weight-semibold">CSV Column</div>
+                        <VCol cols="12" lg="8">
+                          <VCard variant="outlined" class="bg-grey-lighten-5 border">
+                            <VCardItem class="pb-2 pt-4 px-3 px-sm-4">
+                              <div class="d-flex align-center px-2">
+                                <div style="flex: 1"
+                                  class="text-caption text-sm-body-2 text-textPrimary font-weight-bold">Contact
+                                  Field</div>
+                                <div style="flex: 1"
+                                  class="ml-2 ml-sm-4 text-caption text-sm-body-2 text-textPrimary font-weight-bold">CSV
+                                  Column
+                                </div>
                               </div>
                             </VCardItem>
                             <VDivider />
-                            <VCardText class="pa-4">
+                            <VCardText class="pa-2 pa-sm-4">
                               <div
                                 v-for="(field, i) in ['Full name', 'First name', 'Last name', 'Company Name', 'Position', 'Headline']"
-                                :key="i" class="d-flex align-center mb-3">
+                                :key="i" class="d-flex align-center mb-2">
                                 <VCard variant="outlined"
-                                  class="flex-grow-1 px-4 py-2 d-flex align-center text-body-2 border">
-                                  <VIcon size="18" class="text-success mr-3">tabler-list-details</VIcon> {{ field }}
+                                  class="flex-grow-1 px-2 px-sm-4 py-1 py-sm-2 d-flex align-center text-caption text-sm-body-2 border">
+                                  {{ field }}
                                 </VCard>
                                 <VCard variant="outlined"
-                                  class="flex-grow-1 ml-4 px-4 py-2 d-flex align-center justify-space-between text-body-2 border">
-                                  <div class="d-flex align-center">
-                                    <VIcon size="18" class="text-medium-emphasis mr-3">tabler-user</VIcon> {{ field }}
-                                  </div>
-                                  <span class="text-medium-emphasis">(35)</span>
+                                  class="flex-grow-1 ml-2 ml-sm-4 px-2 px-sm-4 py-1 py-sm-2 d-flex align-center justify-space-between text-caption text-sm-body-2 border">
+                                  <div class="text-truncate mr-1">{{ field }}</div>
+                                  <span class="text-medium-emphasis d-none d-sm-inline">(35)</span>
                                 </VCard>
                               </div>
                             </VCardText>
                           </VCard>
                         </VCol>
 
-                        <VCol cols="12" md="4">
-                          <VCard variant="outlined" class="h-100 bg-grey-lighten-5 border">
-                            <VCardItem class="pb-2 pt-4">
-                              <VCardTitle class="text-subtitle-1 font-weight-semibold text-textPrimary">Unmapped Works
+                        <VCol cols="12" lg="4">
+                          <VCard variant="outlined" class="bg-grey-lighten-5 border">
+                            <VCardItem class="pb-2 pt-4 px-3 px-sm-4">
+                              <VCardTitle class="text-subtitle-2 font-weight-bold text-textPrimary">Unmapped Works
                               </VCardTitle>
                             </VCardItem>
                             <VDivider />
 
-                            <VCardText class="pa-4">
+                            <VCardText class="pa-3 pa-sm-4">
                               <VTextField placeholder="Search" prepend-inner-icon="tabler-search" density="compact"
-                                variant="outlined" class="mb-4 bg-white h-30" hide-details />
-                              <div v-for="item in ['Location', 'Industry', 'Notes']" :key="item" class="mb-3">
+                                variant="outlined" class="mb-4 bg-white" hide-details />
+                              <div v-for="item in ['Location', 'Industry', 'Notes']" :key="item" class="mb-2">
                                 <VCard variant="outlined"
-                                  class="px-4 py-2 d-flex align-center justify-space-between bg-bgLight text-body-2 border">
+                                  class="px-3 py-1 py-sm-2 d-flex align-center justify-space-between bg-bgLight text-caption text-sm-body-2 border">
                                   <div class="d-flex align-center">
-                                    <VIcon size="18" class="text-medium-emphasis mr-2">tabler-list</VIcon> {{ item }}
-                                    (9)
+                                    <VIcon size="16" class="text-medium-emphasis mr-2">tabler-list</VIcon> {{ item }}
                                   </div>
                                   <span class="text-medium-emphasis">(3)</span>
                                 </VCard>
                               </div>
-                              <div class="text-right mt-4">
+                              <div class="text-right mt-3">
                                 <a href="#"
-                                  class="text-newPrimary text-body-2 text-decoration-none font-weight-medium">Clear
-                                  All
-                                  Matched</a>
+                                  class="text-newPrimary text-caption text-sm-body-2 text-decoration-none font-weight-medium">Clear
+                                  All</a>
                               </div>
                             </VCardText>
                           </VCard>
@@ -377,54 +374,58 @@ const handleListSelected = (listName) => {
         </div>
 
         <!-- Step 2 Content -->
-        <div v-if="currentStep === 2">
-          <div class="d-flex my-6 border-newPrimary flex-grow-0 ">
+        <div v-if="currentStep === 2" class="px-2 px-sm-4">
+          <div class="d-flex my-4 my-sm-6 overflow-x-auto">
             <div
-              class="cursor-pointer  border py-2 px-8 rounded-s text-subtitle-2 font-weight-medium border-newPrimary!"
-              :class="currentProfileTab === 'linkedin' ? 'bg-activebg text-newPrimary ' : 'bg-white text-medium-emphasis'"
-              @click="currentProfileTab = 'linkedin'" style="transition: all 0.2s ease">
+              class="cursor-pointer border py-2 px-4 px-sm-8 rounded-s text-caption text-sm-subtitle-2 font-weight-medium whitespace-nowrap"
+              :class="currentProfileTab === 'linkedin' ? 'bg-activebg text-newPrimary border-newPrimary' : 'bg-white text-medium-emphasis border-e-0'"
+              @click="currentProfileTab = 'linkedin'">
               LinkedIn Profile
             </div>
             <div
-              class="cursor-pointer border border-s-0 py-2 px-8 rounded-e text-subtitle-2 font-weight-medium border-newPrimary!"
+              class="cursor-pointer border py-2 px-4 px-sm-8 rounded-e text-caption text-sm-subtitle-2 border-newPrimary! font-weight-medium whitespace-nowrap"
               :class="currentProfileTab === 'email' ? 'bg-activebg text-newPrimary ' : 'bg-white text-medium-emphasis'"
-              @click="currentProfileTab = 'email'" style="transition: all 0.2s ease">
+              @click="currentProfileTab = 'email'">
               Email Accounts
             </div>
           </div>
 
           <VCard v-if="currentProfileTab === 'linkedin'" class="mb-6 border" elevation="0">
-            <VCardItem class="pa-5 bg-white border-b">
-              <div class="d-flex justify-space-between align-center">
+            <VCardItem class="pa-4 pa-sm-5 bg-white border-b">
+              <div class="d-flex flex-column flex-sm-row justify-space-between align-sm-center gap-4">
                 <div>
-                  <div class="d-flex align-center text-h6 font-weight-medium text-high-emphasis">
-                    <VIcon size="24" class="mr-3 bg-newPrimary">tabler-brand-linkedin</VIcon> LinkedIn Profile
+                  <div class="d-flex align-center text-subtitle-1 text-sm-h6 font-weight-medium text-high-emphasis">
+                    <VIcon size="24" class="mr-3 text-newPrimary">tabler-brand-linkedin</VIcon> LinkedIn Profile
                   </div>
-                  <div class="text-body-2 text-medium-emphasis mt-2">Pick which LinkedIn profiles you want to use for
-                    this
-                    campaign.</div>
+                  <div class="text-caption text-sm-body-2 text-medium-emphasis mt-1">Pick profiles for this campaign.
+                  </div>
                 </div>
-                <VBtn color="newPrimary" prepend-icon="tabler-plus" elevation="0">
+                <VBtn color="newPrimary" prepend-icon="tabler-plus" elevation="0" block class="d-sm-none">
+                  Add Account
+                </VBtn>
+                <VBtn color="newPrimary" prepend-icon="tabler-plus" elevation="0" class="d-none d-sm-flex">
                   Add Account
                 </VBtn>
               </div>
             </VCardItem>
 
             <!-- Table Controls -->
-            <VCardText class="d-flex justify-space-between align-center py-4 px-5 bg-white">
-              <div class="d-flex align-center text-body-2 text-medium-emphasis">
+            <VCardText
+              class="d-flex flex-column flex-sm-row justify-space-between align-sm-center py-4 px-4 px-sm-5 bg-white gap-4">
+              <div class="d-flex align-center text-caption text-sm-body-2 text-medium-emphasis order-2 order-sm-1">
                 Show
                 <span class="mx-2 d-flex align-center cursor-pointer text-high-emphasis font-weight-bold">
-                  10 <VIcon size="16" class="ml-1">tabler-chevron-down</VIcon>
+                  10 <VIcon size="14" class="ml-1">tabler-chevron-down</VIcon>
                 </span>
               </div>
               <VTextField placeholder="Search" prepend-inner-icon="tabler-search" density="compact" variant="outlined"
-                style="max-width: 260px" hide-details bg-color="white" />
+                class="w-100 w-sm-auto order-1 order-sm-2" style="max-width: 100%; min-width: 200px" hide-details
+                bg-color="white" />
             </VCardText>
 
             <VDivider />
 
-            <VCardText class="pa-0">
+            <VCardText class="pa-0 overflow-x-auto">
               <VTable class="text-no-wrap bg-white">
 
                 <thead class="bg-tableHeadBg">
@@ -579,6 +580,7 @@ const handleListSelected = (listName) => {
   transition: all 0.2s ease-in-out;
   border-color: #E2E8F0 !important;
   border-width: 1.5px !important;
+  background-color: rgba(var(--v-theme-newPrimary), 0.02) !important;
 }
 
 .import-card:hover {

@@ -42,38 +42,38 @@ const handleClose = () => {
         </div>
       </VCardItem>
 
-      <VCardText class="px-12 py-6">
+      <VCardText class="px-4 px-sm-12 py-6">
         <VRadioGroup v-model="selectedWorkflow" hide-details>
           <!-- Advanced Workflow Card -->
           <VCard variant="outlined" class="mb-4 workflow-card cursor-pointer"
             :style="{ borderColor: selectedWorkflow === 'advanced' && configStore.theme === 'light' ? '#CFDAFE' : '', background: selectedWorkflow === 'advanced' && configStore.theme === 'light' ? '#F6F8FF' : '' }"
             @click="selectedWorkflow = 'advanced'">
-            <VCardText class="d-flex align-start pa-4">
-              <VRadio value="advanced" color="#3666EE" class="mt-n1 mr-0" />
+            <VCardText class="d-flex align-start pa-3 pa-sm-4">
+              <VRadio value="advanced" color="#3666EE" class="mt-n1 mr-1 mr-sm-2" />
               <div class="flex-grow-1">
-                <div class="d-flex align-center mb-1">
-                  <p class="text-base font-weight-bold mb-0 mr-3">Advanced Workflow</p>
-                  <VChip color="#28C76F" size="small" variant="tonal" class="rounded-xl"
-                    style="font-size: 12px; background: rgba(40, 199, 111, 0.12)">
+                <div class="d-flex flex-wrap align-center mb-1 gap-2">
+                  <p class="text-base font-weight-bold mb-0">Advanced Workflow</p>
+                  <VChip color="#28C76F" size="x-small" variant="tonal" class="rounded-xl flex-shrink-0"
+                    style="font-size: 10px; background: rgba(40, 199, 111, 0.12)">
                     Recommended</VChip>
                 </div>
-                <p class="text-body-2 text-medium-emphasis mb-2 text-[#5E5873]" style="">Best for high-volume outreach
+                <p class="text-caption text-sm-body-2 text-medium-emphasis mb-2 text-[#5E5873]">Best for high-volume outreach
                 </p>
-                <div class="d-flex gap-4 text-caption text-medium-emphasis text-[#5E5873]">
+                <div class="d-flex flex-wrap gap-x-4 gap-y-1 text-caption text-medium-emphasis text-[#5E5873]">
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Conditional logic
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Conditional logic
                   </div>
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Multiple paths
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Multiple paths
                   </div>
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>More control
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>More control
                   </div>
                 </div>
               </div>
-              <div class="workflow-illustration d-none d-sm-flex align-center justify-center ml-4 flex-shrink-0"
-                style="width: 80px;">
-                <VImg :src="advancedWorkflow" width="80" />
+              <div class="workflow-illustration d-none d-md-flex align-center justify-center ml-4 flex-shrink-0"
+                style="width: 60px;">
+                <VImg :src="advancedWorkflow" width="60" />
               </div>
             </VCardText>
           </VCard>
@@ -82,38 +82,38 @@ const handleClose = () => {
           <VCard variant="outlined" class="workflow-card cursor-pointer"
             :style="{ borderColor: selectedWorkflow === 'standard' && configStore.theme === 'light' ? '#CFDAFE' : '', background: selectedWorkflow === 'standard' && configStore.theme === 'light' ? '#F6F8FF' : '' }"
             @click="selectedWorkflow = 'standard'">
-            <VCardText class="d-flex align-start pa-4">
-              <VRadio value="standard" color="#3666EE" class="mt-n1 mr-2 flex-grow-0" />
+            <VCardText class="d-flex align-start pa-3 pa-sm-4">
+              <VRadio value="standard" color="#3666EE" class="mt-n1 mr-1 mr-sm-2 flex-grow-0" />
               <div class="flex-grow-1">
                 <div class="d-flex align-center mb-1">
                   <p class="text-base font-weight-bold mb-0">Standard Workflow</p>
                 </div>
-                <p class="text-body-2 text-medium-emphasis text-[#5E5873] mb-2">Best for beginners</p>
-                <div class="d-flex gap-4 text-caption text-medium-emphasis text-[#5E5873]">
+                <p class="text-caption text-sm-body-2 text-medium-emphasis text-[#5E5873] mb-2">Best for beginners</p>
+                <div class="d-flex flex-wrap gap-x-4 gap-y-1 text-caption text-medium-emphasis text-[#5E5873]">
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Linear steps
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Linear steps
                   </div>
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>No conditions
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>No conditions
                   </div>
                   <div class="d-flex align-center">
-                    <VIcon size="10" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Easy Setup
+                    <VIcon size="8" color="#B1B1B1" class="mr-1">tabler-circle-filled</VIcon>Easy Setup
                   </div>
                 </div>
               </div>
-              <div class="workflow-illustration d-none d-sm-flex align-center justify-center ml-4 flex-shrink-0"
-                style="width: 80px;">
-                <VImg :src="standardWorkflow" width="80" />
+              <div class="workflow-illustration d-none d-md-flex align-center justify-center ml-4 flex-shrink-0"
+                style="width: 60px;">
+                <VImg :src="standardWorkflow" width="60" />
               </div>
             </VCardText>
           </VCard>
         </VRadioGroup>
       </VCardText>
 
-      <VCardActions class="px-6 pb-4 d-flex justify-end gap-3">
-        <VBtn color="#9692A4" variant="tonal" @click="handleClose">Close</VBtn>
+      <VCardActions class="px-6 pb-4 d-flex justify-end gap-3 flex-wrap">
+        <VBtn color="#9692A4" variant="tonal" class="px-6" @click="handleClose">Close</VBtn>
         <VBtn style="background: linear-gradient(239.27deg, #8BA6FF -27.06%, #3762EE 83.4%);" variant="elevated"
-          @click="handleNext">Next</VBtn>
+          class="px-8" @click="handleNext">Next</VBtn>
       </VCardActions>
     </VCard>
   </VDialog>
