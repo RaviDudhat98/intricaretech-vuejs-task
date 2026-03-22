@@ -16,47 +16,48 @@ const useWebhook = ref(false)
 <template>
   <div class="standard-setup-view">
 
-    <!-- Stepper area for Standard Flow -->
-    <VCard class="mb-6">
-      <VCardText class="d-flex flex-column pa-4">
-        <div class="d-flex align-center px-6 py-3 border rounded mb-6">
+    <VCard class="mb-6 stepper-header-card border-none" elevation="0">
+      <VCardText class="d-flex flex-column pa-4 pb-0">
+        <div class="d-flex align-center justify-space-between px-6 py-4 border rounded shadow-sm bg-white">
+          <!-- Step 1 -->
           <div
-            :class="['d-flex align-center font-weight-medium cursor-pointer', currentStandardStep >= 1 ? 'text-newPrimary' : 'text-disabled']"
+            :class="['d-flex align-center font-weight-semibold cursor-pointer', currentStandardStep === 1 ? 'text-textPrimary' : 'text-disabled']"
             @click="currentStandardStep = 1">
-            <VAvatar :color="currentStandardStep >= 1 ? 'newPrimary' : 'secondary'"
-              :variant="currentStandardStep >= 1 ? 'elevated' : 'tonal'" rounded size="32" class="mr-2"
-              :class="{ 'opacity-50': currentStandardStep < 1 }">
-              <VIcon size="20">tabler-list</VIcon>
+            <VAvatar :color="currentStandardStep === 1 ? 'newPrimary' : 'activebg'"
+              :variant="currentStandardStep === 1 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
+              <VIcon size="22" :color="currentStandardStep === 1 ? 'white' : 'newPrimary'">tabler-list-details</VIcon>
             </VAvatar>
-            Leads List
+            <span class="text-subtitle-1">Leads List</span>
           </div>
-          <VIcon size="20" class="mx-4 text-disabled">tabler-chevron-right</VIcon>
+          <VIcon size="20" class="text-disabled">tabler-chevron-right</VIcon>
 
+          <!-- Step 2 -->
           <div
-            :class="['d-flex align-center font-weight-medium cursor-pointer', currentStandardStep >= 2 ? 'text-newPrimary' : 'text-disabled']"
+            :class="['d-flex align-center font-weight-semibold cursor-pointer', currentStandardStep === 2 ? 'text-textPrimary' : 'text-disabled']"
             @click="currentStandardStep = 2">
-            <VAvatar :color="currentStandardStep >= 2 ? 'newPrimary' : 'secondary'"
-              :variant="currentStandardStep >= 2 ? 'elevated' : 'tonal'" rounded size="32" class="mr-2"
-              :class="{ 'opacity-50': currentStandardStep < 2 }">
-              <VIcon size="20">tabler-send</VIcon>
+            <VAvatar :color="currentStandardStep === 2 ? 'newPrimary' : 'activebg'"
+              :variant="currentStandardStep === 2 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
+              <VIcon size="22" :color="currentStandardStep === 2 ? 'white' : 'newPrimary'">tabler-send</VIcon>
             </VAvatar>
-            Target Audience
+            <span class="text-subtitle-1">Target Audience</span>
           </div>
-          <VIcon size="20" class="mx-4 text-disabled">tabler-chevron-right</VIcon>
+          <VIcon size="20" class="text-disabled">tabler-chevron-right</VIcon>
 
+          <!-- Step 3 -->
           <div
-            :class="['d-flex align-center font-weight-medium', currentStandardStep === 3 ? 'text-newPrimary' : 'text-disabled']">
-            <VAvatar :color="currentStandardStep === 3 ? 'newPrimary' : 'secondary'"
-              :variant="currentStandardStep === 3 ? 'elevated' : 'tonal'" rounded size="32" class="mr-2"
-              :class="{ 'opacity-50': currentStandardStep !== 3 }">
-              <VIcon size="20">tabler-speakerphone</VIcon>
+            :class="['d-flex align-center font-weight-semibold cursor-pointer', currentStandardStep === 3 ? 'text-textPrimary' : 'text-disabled']"
+            @click="currentStandardStep = 3">
+            <VAvatar :color="currentStandardStep === 3 ? 'newPrimary' : 'activebg'"
+              :variant="currentStandardStep === 3 ? 'elevated' : 'flat'" rounded size="38" class="mr-3">
+              <VIcon size="22" :color="currentStandardStep === 3 ? 'white' : 'newPrimary'">tabler-speakerphone</VIcon>
             </VAvatar>
-            Campaign
+            <span class="text-subtitle-1">Campaign</span>
           </div>
         </div>
 
+
         <!-- Standard Step 1: Leads List -->
-        <div v-if="currentStandardStep === 1" class="px-10">
+        <div v-if="currentStandardStep === 1" class="px-10 py-5">
           <VRow>
             <VCol cols="12" md="6">
               <div class="text-subtitle-2 font-weight-medium mb-1">Campaign Name</div>
@@ -104,7 +105,7 @@ const useWebhook = ref(false)
         </div>
 
         <!-- Standard Step 2: Target Audience -->
-        <div v-if="currentStandardStep === 2" class="">
+        <div v-if="currentStandardStep === 2" class="py-5">
           <VRow>
             <VCol cols="12" md="6">
               <VCard variant="outlined" class="h-100 pa-6 bg-white border-dashed">
@@ -148,119 +149,123 @@ const useWebhook = ref(false)
         </div>
 
         <!-- Standard Step 3: Sequence -->
-        <div v-if="currentStandardStep === 3" class="sequence-timeline">
-          <div class="timeline-container px-4 py-2 border-s-2 border-newPrimary ml-2 mb-4 position-relative">
+        <div v-if="currentStandardStep === 3" class="sequence-timeline px-4">
+          <div class="timeline-container py-2 border-s-2 border-newPrimary ml-2 mb-4 position-relative">
 
-            <!-- Stop 1 -->
-            <div class="timeline-dot position-absolute bg-white border border-newPrimary rounded-circle"
-              style="left: -7px; top: 0; width: 12px; height: 12px;"></div>
-            <VCard variant="outlined" class="bg-grey-lighten-5 mb-6 mt-n2 ml-4">
-              <VCardText class="d-flex align-center py-3">
-                <VIcon color="medium-emphasis" size="20" class="mr-2">tabler-arrow-ramp-right-2</VIcon>
-                <span class="text-body-2 font-weight-medium text-high-emphasis">Campaign Start</span>
-              </VCardText>
-              <VDivider />
-              <VCardText class="py-2 bg-white">
-                <span class="text-caption text-medium-emphasis">When a lead enters your target audience</span>
-              </VCardText>
+            <!-- Stop 1: Campaign Start -->
+            <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
+              style="left: -9px; top: 0; width: 16px; height: 16px;"></div>
+            <VCard variant="outlined" class="my-6 ml-6 border" elevation="0">
+              <div class="d-flex align-center mx-4 my-3">
+                <VIcon color="newPrimary" size="24" class="mr-3">tabler-rocket</VIcon>
+                <span class="text-h6 font-weight-bold text-textPrimary">Campaign Start</span>
+              </div>
+              <div class="px-4 py-1 bg-activebg rounded-b text-body-2 text-textPrimary">
+                When a lead enters your target audience
+              </div>
             </VCard>
 
-            <!-- Stop 2 -->
-            <div class="timeline-dot position-absolute bg-white border border-newPrimary rounded-circle"
-              style="left: -7px; top: 110px; width: 12px; height: 12px;"></div>
-            <VCard variant="outlined" class="mb-6 ml-4">
-              <VCardText class="d-flex align-center justify-space-between py-3 border-b">
-                <div class="d-flex align-center text-body-2 font-weight-medium text-high-emphasis">
-                  <VAvatar color="newPrimary" variant="tonal" rounded size="24" class="mr-2 px-1">
-                    <VIcon size="14">tabler-brand-linkedin</VIcon>
-                  </VAvatar>
+            <!-- Stop 2: Connection Request -->
+            <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
+              style="left: -9px; top: 125px; width: 16px; height: 16px;"></div>
+            <VCard variant="outlined" class="mb-8 ml-6 border">
+              <VCardText class="d-flex align-center justify-space-between py-4 ">
+                <div class="d-flex align-center text-h6 font-weight-bold text-textPrimary">
+                  <VIcon size="20" color="newPrimary" class="mr-3">tabler-brand-linkedin</VIcon>
                   Send LinkedIn Connection Request
                 </div>
-                <div class="d-flex gap-2">
-                  <VIcon size="18" class="text-medium-emphasis cursor-pointer">tabler-pencil</VIcon>
-                  <VIcon size="18" color="error" class="cursor-pointer">tabler-trash</VIcon>
+                <div class="d-flex gap-3">
+                  <VIcon size="20" class="text-medium-emphasis cursor-pointer">tabler-pencil</VIcon>
+                  <VIcon size="20" color="error" class="cursor-pointer">tabler-trash</VIcon>
                 </div>
               </VCardText>
-              <VCardText class="pt-4">
-                <div class="text-body-2 mb-4 bg-white rounded border pa-3 text-medium-emphasis">
+              <VCardText class="pa-6">
+                <div class="text-body-1 mb-6 pa-5 rounded border border-dashed text-textPrimary bg-bgLight"
+                  style="min-height: 100px;">
                   Hi {{ '{first_name}' }}..
                 </div>
                 <div class="d-flex gap-4">
-                  <VBtn class="bg-bgGradient" size="small">Edit Message</VBtn>
-                  <VBtn variant="outlined" color="newPrimary" size="small">
+                  <VBtn class="bg-bgGradient text-white px-8" elevation="0">Edit Message</VBtn>
+                  <VBtn variant="outlined" color="newPrimary" class="px-8 border-newPrimary">
                     <VIcon start>tabler-wand</VIcon> Make with AI
                   </VBtn>
                 </div>
               </VCardText>
             </VCard>
 
-            <!-- Stop 3 -->
-            <div class="timeline-dot position-absolute bg-white border border-newPrimary rounded-circle"
-              style="left: -7px; top: 320px; width: 12px; height: 12px;"></div>
-            <VCard variant="outlined" class="mb-6 ml-4">
-              <VCardText class="d-flex align-center justify-space-between py-3 border-b">
-                <div class="d-flex align-center text-body-2 font-weight-medium text-high-emphasis">
-                  <VAvatar color="info" variant="tonal" rounded size="24" class="mr-2">
-                    <VIcon size="14">tabler-arrow-forward-up</VIcon>
-                  </VAvatar>
+            <!-- Stop 3: Follow-up message -->
+            <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
+              style="left: -9px; top: 415px; width: 16px; height: 16px;"></div>
+            <VCard variant="outlined" class="mb-8 ml-6 border">
+              <VCardText class="d-flex align-center justify-space-between py-4 ">
+                <div class="d-flex align-center text-h6 font-weight-bold text-textPrimary">
+                  <VIcon size="20" color="newPrimary" class="mr-3">tabler-arrow-forward-up</VIcon>
                   Set Follow-up message
                 </div>
-                <div class="d-flex gap-2">
-                  <VIcon size="18" class="text-medium-emphasis cursor-pointer">tabler-pencil</VIcon>
-                  <VIcon size="18" color="error" class="cursor-pointer">tabler-trash</VIcon>
+                <div class="d-flex gap-3">
+                  <VIcon size="20" class="text-medium-emphasis cursor-pointer">tabler-pencil</VIcon>
+                  <VIcon size="20" color="error" class="cursor-pointer">tabler-trash</VIcon>
                 </div>
               </VCardText>
-              <VCardText class="pt-4">
-                <div class="text-body-2 mb-4 bg-white rounded border pa-3 text-medium-emphasis">
+              <VCardText class="pa-6">
+                <div class="text-body-1 mb-6 pa-5 rounded border border-dashed text-textPrimary bg-bgLight"
+                  style="min-height: 100px;">
                   Hi {{ '{first_name}' }}..
                 </div>
-                <div class="d-flex gap-4 mb-4">
-                  <VBtn class="bg-bgGradient" size="small">Edit Message</VBtn>
-                  <VBtn variant="outlined" color="newPrimary" size="small">
+                <div class="d-flex gap-4 mb-6">
+                  <VBtn class="bg-bgGradient text-white px-8" elevation="0">Edit Message</VBtn>
+                  <VBtn variant="outlined" color="newPrimary" class="px-8 border-newPrimary">
                     <VIcon start>tabler-wand</VIcon> Make with AI
                   </VBtn>
                 </div>
-              </VCardText>
-              <VDivider class="border-dashed" />
-              <VCardText class="py-3 bg-grey-lighten-5 d-flex align-center text-body-2 text-medium-emphasis">
-                Once accepted wait
-                <span class="d-inline-flex bg-white border rounded px-2 py-1 mx-2">3 <span
-                    class="ml-1 text-disabled">Minutes</span></span>
-                <span class="d-inline-flex bg-white border rounded px-2 py-1 mx-2">3 <span
-                    class="ml-1 text-disabled">Hour</span></span>
-                <span class="d-inline-flex bg-white border rounded px-2 py-1 mx-2">3 <span
-                    class="ml-1 text-disabled">days</span></span>
+
+                <!-- Wait section -->
+                <div
+                  class="pa-5 rounded border border-dashed border-newPrimary bg-bgLight d-flex align-center text-body-1 text-textSecondary font-weight-medium">
+                  Once accepted wait
+                  <span class="mx-3 d-flex align-center bg-white border rounded px-3 py-1">
+                    3 <span class="ml-2 text-disabled font-weight-regular text-body-2">Minutes</span>
+                  </span>
+                  <span class="mr-3 d-flex align-center bg-white border rounded px-3 py-1">
+                    3 <span class="ml-2 text-disabled font-weight-regular text-body-2">Hour</span>
+                  </span>
+                  <span class="d-flex align-center bg-white border rounded px-3 py-1">
+                    3 <span class="ml-2 text-disabled font-weight-regular text-body-2">days</span>
+                  </span>
+                </div>
               </VCardText>
             </VCard>
 
-            <!-- Stop 4 (Add new) -->
-            <div class="timeline-dot position-absolute bg-white border border-newPrimary rounded-circle"
-              style="left: -7px; top: 560px; width: 12px; height: 12px;"></div>
-            <VCard variant="outlined" class="mb-6 ml-4 bg-grey-lighten-5 border-dashed cursor-pointer"
+            <!-- Stop 4: Add new follow-up -->
+            <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
+              style="left: -9px; top: 825px; width: 16px; height: 16px;"></div>
+            <VCard variant="outlined" class="mb-8 ml-6 border-dashed border-newPrimary bg-bgLight cursor-pointer"
               style="border-width: 2px !important;">
-              <VCardText class="d-flex align-center py-4 text-newPrimary justify-center font-weight-medium">
-                <VIcon size="20" class="mr-2">tabler-plus</VIcon> Add new follow-up
+              <VCardText class="d-flex py-5 text-newPrimary align-center font-weight-bold text-h6">
+                <VIcon size="24" class="mr-3 font-weight-bold">tabler-circle-plus</VIcon> Add new follow-up
               </VCardText>
             </VCard>
 
-            <!-- Stop 5 (End) -->
-            <div class="timeline-dot position-absolute bg-white border border-newPrimary rounded-circle"
-              style="left: -7px; bottom: 18px; width: 12px; height: 12px;"></div>
-            <VCard variant="flat" class="bg-newPrimary-lighten-5 ml-4">
-              <VCardText class="d-flex align-center py-3 text-newPrimary font-weight-medium">
-                <VIcon size="20" class="mr-2">tabler-minus</VIcon> End of Campaign
+            <!-- Stop 5: End of Campaign -->
+            <div class="timeline-dot position-absolute bg-white border-2 border-newPrimary rounded-circle"
+              style="left: -9px; bottom: 20px; width: 16px; height: 16px;"></div>
+            <VCard variant="flat" class="ml-6 bg-activebg">
+              <VCardText class="d-flex align-center py-4 text-newPrimary font-weight-bold text-h6">
+                <VIcon size="24" class="mr-3">tabler-minus</VIcon> End of Campaign
               </VCardText>
             </VCard>
 
           </div>
 
-          <div class="d-flex justify-space-between align-center mt-8">
-            <div class="cursor-pointer text-newPrimary text-body-1 font-weight-medium" @click="currentStandardStep = 2">
+          <div class="d-flex justify-space-between align-center mt-12 mb-6">
+            <div class="cursor-pointer text-newPrimary text-h6 font-weight-medium" @click="currentStandardStep = 2">
               Back
             </div>
             <div class="d-flex gap-4">
-              <VBtn variant="tonal" color="secondary" class="bg-grey-lighten-3">Save as Draft</VBtn>
-              <VBtn class="bg-bgGradient" @click="$emit('submit')">Launch Campaign</VBtn>
+              <VBtn variant="tonal" color="secondary" class="bg-grey-lighten-3 px-8 text-none">Save as
+                Draft</VBtn>
+              <VBtn class="bg-bgGradient text-white px-8 text-none" @click="$emit('submit')">Launch
+                Campaign</VBtn>
             </div>
           </div>
         </div>
